@@ -7,6 +7,7 @@
   const bio = document.getElementById('bio');
 
   const setInfo = (info) => {
+    avatarImg.alt = "avatar";
     avatarImg.src = info.avatar_url;
     followers.textContent = `${info.followers} followers`;
     following.textContent = `${info.following} following`;
@@ -18,7 +19,7 @@
 
     const repos = document.getElementById('repos');
 
-    let html = '';
+    let html = '<div class="thumbnail">';
     info.map(item => {
       html +=
         `<div class="caption">
@@ -28,6 +29,7 @@
           </h3>              
         </div>`;
     })
+    html += '</div>';
     repos.innerHTML += html;
   }
 
