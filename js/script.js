@@ -10,20 +10,45 @@
     avatarImg.src = info.avatar_url;
     followers.textContent = `${info.followers} followers`;
     following.textContent = `${info.following} following`;
-    email.textContent = `Email: ${info.email}`;
-    bio.textContent = `Bio: ${info.bio}`;
-    console.log(info);
+    email.textContent = info.email ? `Email: ${info.email}` : null;
+    bio.textContent = info.bio ? `Bio: ${info.bio}` : null;
+  }
+
+  const setRepos = (info) => {
+
+    const repos = document.getElementById('repos');
+
+    let html = '';
+    info.map(item => {
+      html +=
+        `<div class="caption">
+          <h3 id="repo-name">
+            <a href="#">${item.name}<a/>
+            <span class="badge" id="stars">${item.stargazers_count}</span>
+          </h3>              
+        </div>`;
+    })
+    repos.innerHTML += html;
+  }
+
+  const listRepos = (search) => {
+    const url = `https://api.github.com/users/${search}/repos`;
+    fetch(url, { method: 'get' })
+      .then(response => response.json())
+        .then(json => {
+          setRepos(json);
+        });
   }
 
   const searchUser = () => {
     const search = input.value;
     const url = `https://api.github.com/users/${search}`;
-    fetch(url, {
-      method: 'get'
-    }).then(response => response.json())
-      .then(json => {
-        setInfo(json);
-      });
+    fetch(url, { method: 'get' })
+      .then(response => response.json())
+        .then(json => {
+          setInfo(json);
+          listRepos(search);
+        });
   }
 
   btnSearch.addEventListener('click', searchUser);
