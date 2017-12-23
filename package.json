@@ -1,5 +1,10 @@
 {
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
   "devDependencies": {
-    "bootstrap": "^3.3.7"
+    "bootstrap": "^3.3.7",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
   }
 }

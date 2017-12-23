@@ -1,3 +1,4 @@
+const app = () => {
   const btnSearch = document.getElementById('btnSearch');
   const input = document.getElementById('searchInput');
   const avatarImg = document.getElementById('avatar-img');
@@ -16,10 +17,9 @@
   }
 
   const setRepos = (info) => {
-
     const repos = document.getElementById('repos');
-
     let html = '<div class="thumbnail">';
+
     info.map(item => {
       html +=
         `<div class="caption">
@@ -54,3 +54,13 @@
   }
 
   btnSearch.addEventListener('click', searchUser);
+}
+
+app();
+
+if (module.hot) {
+  module.hot.accept(app, () => {
+    console.log('Accepting the updated app function!');
+    app();
+  })
+}
