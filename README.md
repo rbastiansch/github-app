@@ -5,6 +5,7 @@ An app to consume github API.
 ## Install dependencies
 ```
 npm install
+npm start
 
 ```
 
