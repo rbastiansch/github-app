@@ -1,7 +1,7 @@
-import Github from './Github';
+import { Github, script } from './Github';
 
 const Home = (props) =>
   `<h1>Github App</h1>
     ${Github}`;
 
-export default Home;
+export { Home, script };
